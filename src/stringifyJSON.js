@@ -4,18 +4,19 @@
 // but you don't so you're going to have to write it from scratch:
 var stringifyJSON = function (obj) {
   // your code goes here
+
 var result = '';
-var type = typeof obj;
+var type = $.type(obj);
 
-if (type === 'number') {
-	return result +  obj + '';
-} else if (type === 'boolean') {
-	return result + obj + '';
-} else if (type === 'string') {
-	return "\"" + obj + "\"";
-} else if (type === 'object') {
-	console.log(obj);
-	return result + obj + '';
-}
-
+  switch(type) {
+    case 'string':
+      result = '"' + obj + '"';
+      break;
+    case 'array':
+      break
+    default:
+      result = result + '' + obj + '';
+    break;
+  }
+return result;
 };
