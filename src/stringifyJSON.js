@@ -8,15 +8,21 @@ var stringifyJSON = function (obj) {
 var result = '';
 var type = $.type(obj);
 
-  switch(type) {
-    case 'string':
-      result = '"' + obj + '"';
-      break;
-    case 'array':
-      break
-    default:
-      result = result + '' + obj + '';
+switch(type) {
+  case 'string':
+    result = '"' + obj + '"';
+    break;
+  case 'array':
+    result = result + '[';
+    for (var i = 0; i < obj.length; i++) {
+    	result = result + stringifyJSON(obj[i]) + ',';
+    }
+    result = result + ']';
+    break;
+  default:
+    result = result + '' + obj + '';
     break;
   }
+result = result.replace(',]', ']');
 return result;
 };
