@@ -21,9 +21,11 @@ switch(type) {
     break;
   case 'object':
     result = result + '{';
+    if (!obj.hasOwnProperty('undefined')) {
       for (var key in obj) {
       	result = result + '' + stringifyJSON(key) + ':' + stringifyJSON(obj[key]) + ',';
       }
+    }
     result = result + '}';
     break;
   default:
