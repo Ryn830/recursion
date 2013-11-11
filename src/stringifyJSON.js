@@ -19,10 +19,18 @@ switch(type) {
     }
     result = result + ']';
     break;
+  case 'object':
+    result = result + '{';
+      for (var key in obj) {
+      	result = result + '' + stringifyJSON(key) + ':' + stringifyJSON(obj[key]) + ',';
+      }
+    result = result + '}';
+    break;
   default:
     result = result + '' + obj + '';
     break;
   }
 result = result.replace(',]', ']');
+result = result.replace(',}', '}');
 return result;
 };
